@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppShell } from "@/components/app-shell";
+import { AuthGate } from "@/components/auth-gate";
 import { InventoryProvider } from "@/components/inventory-provider";
 import { UserProvider } from "@/components/user-provider";
 
@@ -22,7 +23,9 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <UserProvider>
           <InventoryProvider>
-            <AppShell>{children}</AppShell>
+            <AuthGate>
+              <AppShell>{children}</AppShell>
+            </AuthGate>
           </InventoryProvider>
         </UserProvider>
       </body>

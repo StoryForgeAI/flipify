@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Box,
   Crown,
@@ -36,7 +36,8 @@ const links = [
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { email, credits } = useUser();
+  const router = useRouter();
+  const { email, credits, signOut } = useUser();
   const [menuOpen, setMenuOpen] = useState(false);
   const showSidebar = dashboardRoutes.some((route) => pathname.startsWith(route));
 
@@ -96,7 +97,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               <span className="grid h-8 w-8 place-items-center rounded-full bg-royal text-white">{credits}</span>
               credits
             </div>
-            <ProfileDropdown email={email} credits={credits} />
+            <ProfileDropdown
+              email={email}
+              credits={credits}
+              onLogout={async () => {
+                await signOut();
+                router.replace("/login");
+              }}
+            />
             <Link href="/templates" className="hidden rounded-lg bg-royal p-2 text-white sm:block lg:hidden">
               <Sparkles className="h-5 w-5" />
             </Link>
@@ -166,7 +174,15 @@ function SidebarContent({
   );
 }
 
-function ProfileDropdown({ email, credits }: { email: string; credits: number }) {
+function ProfileDropdown({
+  email,
+  credits,
+  onLogout
+}: {
+  email: string;
+  credits: number;
+  onLogout: () => void;
+}) {
   return (
     <div className="group relative">
       <button className="flex items-center gap-3 rounded-full border border-slate-200 bg-white py-1 pl-1 pr-3 shadow-sm transition hover:border-blue-200 hover:shadow-md">
@@ -197,9 +213,9 @@ function ProfileDropdown({ email, credits }: { email: string; credits: number })
         <div className="mt-2 space-y-1">
           <ProfileItem icon={Settings} label="Account settings" />
           <ProfileItem icon={CreditCard} label="Billing infos" />
-          <ProfileItem icon={LockKeyhole} label="Accept marketplace risk policy" checked />
-          <ProfileItem icon={LockKeyhole} label="Accept AI content review policy" checked />
-          <button className="mt-2 flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-bold text-red-600 transition hover:bg-red-50">
+          <ProfileLink icon={LockKeyhole} href="/privacy-policy" label="Privacy Policy" />
+          <ProfileLink icon={LockKeyhole} href="/terms-of-service" label="Terms of Service" />
+          <button onClick={onLogout} className="mt-2 flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-bold text-red-600 transition hover:bg-red-50">
             <LogOut className="h-4 w-4" />
             Log Out
           </button>
@@ -224,7 +240,23 @@ function ProfileItem({
         <Icon className="h-4 w-4 text-royal" />
         {label}
       </span>
-      {checked ? <input type="checkbox" checked readOnly className="h-4 w-4 accent-blue-600" /> : null}
     </button>
+  );
+}
+
+function ProfileLink({
+  icon: Icon,
+  href,
+  label
+}: {
+  icon: typeof Settings;
+  href: string;
+  label: string;
+}) {
+  return (
+    <Link href={href} className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+      <Icon className="h-4 w-4 text-royal" />
+      {label}
+    </Link>
   );
 }

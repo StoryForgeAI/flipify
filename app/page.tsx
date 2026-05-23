@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, Check, CirclePlay, HelpCircle, Sparkles, Zap } from "lucide-react";
+import { Check, CirclePlay, HelpCircle, Sparkles, Zap } from "lucide-react";
 import { Logo } from "@/components/logo";
+import { LandingCta } from "@/components/landing-cta";
 
 const faqs = [
   {
@@ -49,9 +50,7 @@ export default function LandingPage() {
           <Link href="/login" className="hidden text-sm font-semibold text-slate-600 transition hover:text-ink sm:block">
             Login
           </Link>
-          <Link href="/register" className="rounded-lg bg-royal px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700">
-            Start Free
-          </Link>
+          <LandingCta compact showIcon={false}>Start Free</LandingCta>
         </div>
       </header>
 
@@ -69,10 +68,7 @@ export default function LandingPage() {
               Don&apos;t just browse. Flip. Scan marketplaces, generate viral content, and launch your automated clothing resell empire.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/register" className="inline-flex items-center justify-center gap-2 rounded-lg bg-royal px-5 py-3 text-sm font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-blue-700">
-                Start Flipping for Free
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <LandingCta />
               <button className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-ink transition hover:border-slate-300 hover:shadow-sm">
                 <CirclePlay className="h-4 w-4 text-royal" />
                 Watch Demo
