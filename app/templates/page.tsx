@@ -19,11 +19,14 @@ import {
   Wand2,
   Youtube
 } from "lucide-react";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useInventory } from "@/components/inventory-provider";
 import { PageHeader, MetricPill } from "@/components/ui";
 import { aiFoundProduct, InventoryItem } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import { CreditAction, getCreditCost } from "@/lib/credits";
+import { useUser } from "@/components/user-provider";
 
 const finderSteps = [
   "Targeting",
@@ -45,7 +48,68 @@ const videoSteps = [
 type Workflow = "finder" | "video";
 
 export default function TemplatesPage() {
-  const [workflow, setWorkflow] = useState<Workflow>("finder");
+  return (
+    <main>
+      <PageHeader
+        eyebrow="Templates"
+        title="Choose a workflow"
+        description="Starter credits are enough for quick tools, while full templates require a larger paid credit balance."
+      />
+      <section className="grid gap-5 px-5 py-8 sm:px-8 lg:grid-cols-2">
+        <TemplateCard
+          href="/templates/template1"
+          title="AI Product Finder & Listing Copier"
+          description="Find a product, score supplier trust, generate Etsy-ready SEO copy, enhance photos, calculate margin, and export."
+          cost={getCreditCost("template_finder")}
+          icon={ShoppingBag}
+        />
+        <TemplateCard
+          href="/templates/template2"
+          title="Reseller Auto-Video & Content Pipeline"
+          description="Turn active inventory into video prompts, voiceover scripts, captions, and Pro social posting assets."
+          cost={getCreditCost("template_video")}
+          icon={FileVideo}
+        />
+      </section>
+    </main>
+  );
+}
+
+function TemplateCard({
+  href,
+  title,
+  description,
+  cost,
+  icon: Icon
+}: {
+  href: string;
+  title: string;
+  description: string;
+  cost: number;
+  icon: typeof ShoppingBag;
+}) {
+  return (
+    <Link href={href} className="group min-h-80 rounded-xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-soft">
+      <div className="flex items-center justify-between">
+        <div className="grid h-14 w-14 place-items-center rounded-lg bg-blue-50 text-royal">
+          <Icon className="h-6 w-6" />
+        </div>
+        <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-black text-royal">
+          {cost} credits
+        </span>
+      </div>
+      <h2 className="mt-8 text-2xl font-semibold tracking-tight text-ink">{title}</h2>
+      <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
+      <span className="mt-8 inline-flex items-center gap-2 text-sm font-black text-royal">
+        Open workflow
+        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+      </span>
+    </Link>
+  );
+}
+
+export function TemplateWorkflow({ initialWorkflow = "finder" }: { initialWorkflow?: Workflow }) {
+  const [workflow, setWorkflow] = useState<Workflow>(initialWorkflow);
   const [finderStep, setFinderStep] = useState(0);
   const [videoStep, setVideoStep] = useState(0);
   const [title, setTitle] = useState(aiFoundProduct.title);
@@ -55,6 +119,8 @@ export default function TemplatesPage() {
   const [published, setPublished] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState("inv-1");
   const { items, addItem } = useInventory();
+  const { email, credits, setCredits, spendLocalCredits } = useUser();
+  const [aiStatus, setAiStatus] = useState("Ready");
 
   const activeSteps = workflow === "finder" ? finderSteps : videoSteps;
   const activeStep = workflow === "finder" ? finderStep : videoStep;
@@ -96,6 +162,39 @@ export default function TemplatesPage() {
     await navigator.clipboard?.writeText(`${title}\n\n${description}\n\n${hashtags}`);
   };
 
+  const runTemplateAi = async () => {
+    const action: CreditAction = workflow === "finder" ? "template_finder" : "template_video";
+    const cost = getCreditCost(action);
+    setAiStatus("Running AI and debiting credits...");
+
+    try {
+      const response = await fetch("/api/ai/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          action,
+          prompt: `Run the ${workflow} Flipify workflow for a fashion resale item.`
+        })
+      });
+      const data = (await response.json()) as { credits?: number; error?: string };
+      if (!response.ok) {
+        setAiStatus(data.error || `This workflow needs ${cost} credits.`);
+        return;
+      }
+      if (typeof data.credits === "number") {
+        setCredits(data.credits);
+      }
+      setAiStatus(`AI completed. ${cost} credits spent.`);
+    } catch {
+      if (spendLocalCredits(cost)) {
+        setAiStatus(`Preview AI completed. ${cost} local credits spent.`);
+      } else {
+        setAiStatus(`Not enough credits. This workflow costs ${cost} credits.`);
+      }
+    }
+  };
+
   return (
     <main>
       <PageHeader
@@ -104,6 +203,17 @@ export default function TemplatesPage() {
         description="Run complete resale workflows with focused steps, live states, and inventory handoff."
       />
       <section className="px-5 py-8 sm:px-8">
+        <div className="mb-5 flex flex-col gap-3 rounded-xl border border-blue-100 bg-blue-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-sm font-black text-royal">{credits} credits available</p>
+            <p className="mt-1 text-sm text-slate-600">{aiStatus}</p>
+          </div>
+          <button onClick={runTemplateAi} className="inline-flex items-center justify-center gap-2 rounded-lg bg-royal px-4 py-3 text-sm font-black text-white transition hover:bg-blue-700">
+            <Sparkles className="h-4 w-4" />
+            Run AI Usage
+          </button>
+        </div>
+
         <div className="inline-flex rounded-lg border border-slate-200 bg-white p-1 shadow-sm">
           {[
             ["finder", "AI Product Finder & Listing Copier"],

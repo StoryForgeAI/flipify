@@ -20,6 +20,14 @@ export default function RegisterPage() {
             Password
             <input type="password" placeholder="Choose a strong password" className="mt-2 w-full rounded-lg border border-slate-200 px-4 py-3 outline-none transition focus:border-royal focus:ring-4 focus:ring-blue-50" />
           </label>
+          <label className="flex items-start gap-3 rounded-lg bg-slate-50 p-3 text-xs font-semibold leading-5 text-slate-600">
+            <input type="checkbox" required className="mt-0.5 h-4 w-4 accent-blue-600" />
+            I accept that marketplace purchases and supplier decisions are my responsibility.
+          </label>
+          <label className="flex items-start gap-3 rounded-lg bg-slate-50 p-3 text-xs font-semibold leading-5 text-slate-600">
+            <input type="checkbox" required className="mt-0.5 h-4 w-4 accent-blue-600" />
+            I will review AI-generated listings, images, and content before publishing.
+          </label>
           <button className="w-full rounded-lg bg-royal px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-700">
             Create account
           </button>

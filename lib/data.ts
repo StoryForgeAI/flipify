@@ -7,12 +7,14 @@ import {
   Sparkles,
   Tags
 } from "lucide-react";
+import { CreditAction } from "@/lib/credits";
 
 export type Tool = {
   title: string;
   description: string;
   icon: typeof Search;
   accent: string;
+  action: CreditAction;
 };
 
 export type InventoryItem = {
@@ -33,31 +35,36 @@ export const tools: Tool[] = [
     title: "Product Finder AI",
     description: "Scan and discover underpriced items with high resale margins.",
     icon: Search,
-    accent: "bg-blue-50 text-blue-700"
+    accent: "bg-blue-50 text-blue-700",
+    action: "product_finder"
   },
   {
     title: "Viral Video Generator",
     description: "Turn your item photos into high-converting TikTok/Shorts faceless videos.",
     icon: Clapperboard,
-    accent: "bg-fuchsia-50 text-fuchsia-700"
+    accent: "bg-fuchsia-50 text-fuchsia-700",
+    action: "video_generator"
   },
   {
     title: "Description & Tag Optimizer",
     description: "Generate SEO-optimized titles, descriptions, and high-traffic hashtags.",
     icon: Tags,
-    accent: "bg-amber-50 text-amber-700"
+    accent: "bg-amber-50 text-amber-700",
+    action: "description_optimizer"
   },
   {
     title: "Pricing & Margin Intelligence",
     description: "Calculate market value, optimal listing price, and clean profit scores.",
     icon: BadgeEuro,
-    accent: "bg-emerald-50 text-emerald-700"
+    accent: "bg-emerald-50 text-emerald-700",
+    action: "pricing_intelligence"
   },
   {
     title: "Photo Studio Background AI",
     description: "Transform messy product photos into professional marketplace studio shots.",
     icon: Camera,
-    accent: "bg-indigo-50 text-indigo-700"
+    accent: "bg-indigo-50 text-indigo-700",
+    action: "photo_studio"
   }
 ];
 

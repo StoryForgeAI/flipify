@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppShell } from "@/components/app-shell";
 import { InventoryProvider } from "@/components/inventory-provider";
+import { UserProvider } from "@/components/user-provider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased">
-        <InventoryProvider>
-          <AppShell>{children}</AppShell>
-        </InventoryProvider>
+        <UserProvider>
+          <InventoryProvider>
+            <AppShell>{children}</AppShell>
+          </InventoryProvider>
+        </UserProvider>
       </body>
     </html>
   );

@@ -5,15 +5,22 @@ import { usePathname } from "next/navigation";
 import {
   Box,
   Crown,
+  CreditCard,
   Home,
   LayoutTemplate,
+  LockKeyhole,
+  LogOut,
+  Mail,
   MessageCircle,
   Plus,
+  Settings,
   Sparkles,
+  UserCircle,
   Wrench
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { cn } from "@/lib/utils";
+import { useUser } from "@/components/user-provider";
 
 const dashboardRoutes = ["/home", "/tools", "/templates", "/products", "/community"];
 
@@ -27,6 +34,7 @@ const links = [
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const { email, credits } = useUser();
   const showSidebar = dashboardRoutes.some((route) => pathname.startsWith(route));
 
   if (!showSidebar) {
@@ -82,14 +90,89 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </aside>
       <div className="lg:pl-72">
-        <div className="sticky top-0 z-20 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-4 backdrop-blur lg:hidden">
-          <Logo />
-          <Link href="/templates" className="rounded-lg bg-royal p-2 text-white">
-            <Sparkles className="h-5 w-5" />
-          </Link>
+        <div className="sticky top-0 z-20 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-4 backdrop-blur lg:px-8">
+          <div className="lg:hidden">
+            <Logo />
+          </div>
+          <div className="hidden text-sm font-semibold text-slate-500 lg:block">
+            Flipify AI resale dashboard
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="hidden items-center gap-2 rounded-full border border-blue-100 bg-blue-50 py-1 pl-1 pr-3 text-sm font-black text-royal sm:flex">
+              <span className="grid h-8 w-8 place-items-center rounded-full bg-royal text-white">{credits}</span>
+              credits
+            </div>
+            <ProfileDropdown email={email} credits={credits} />
+            <Link href="/templates" className="rounded-lg bg-royal p-2 text-white lg:hidden">
+              <Sparkles className="h-5 w-5" />
+            </Link>
+          </div>
         </div>
         {children}
       </div>
     </div>
+  );
+}
+
+function ProfileDropdown({ email, credits }: { email: string; credits: number }) {
+  return (
+    <div className="group relative">
+      <button className="flex items-center gap-3 rounded-full border border-slate-200 bg-white py-1 pl-1 pr-3 shadow-sm transition hover:border-blue-200 hover:shadow-md">
+        <span className="grid h-9 w-9 place-items-center rounded-full bg-slate-100 text-royal">
+          <Mail className="h-4 w-4" />
+        </span>
+        <span className="hidden text-left sm:block">
+          <span className="block text-xs font-semibold text-slate-500">Registered email</span>
+          <span className="block max-w-44 truncate text-sm font-bold text-ink">{email}</span>
+        </span>
+      </button>
+      <div className="invisible absolute right-0 top-12 w-80 translate-y-2 rounded-xl border border-slate-200 bg-white p-3 opacity-0 shadow-soft transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+        <div className="rounded-lg bg-slate-50 p-4">
+          <div className="flex items-center gap-3">
+            <div className="grid h-11 w-11 place-items-center rounded-full bg-royal text-white">
+              <UserCircle className="h-6 w-6" />
+            </div>
+            <div className="min-w-0">
+              <p className="truncate text-sm font-bold text-ink">{email}</p>
+              <p className="text-xs font-semibold text-slate-500">Free workspace</p>
+            </div>
+          </div>
+          <div className="mt-4 flex items-center justify-between rounded-lg border border-blue-100 bg-white px-3 py-2">
+            <span className="text-sm font-bold text-ink">Available credits</span>
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-royal text-sm font-black text-white">{credits}</span>
+          </div>
+        </div>
+        <div className="mt-2 space-y-1">
+          <ProfileItem icon={Settings} label="Account settings" />
+          <ProfileItem icon={CreditCard} label="Billing infos" />
+          <ProfileItem icon={LockKeyhole} label="Accept marketplace risk policy" checked />
+          <ProfileItem icon={LockKeyhole} label="Accept AI content review policy" checked />
+          <button className="mt-2 flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-bold text-red-600 transition hover:bg-red-50">
+            <LogOut className="h-4 w-4" />
+            Log Out
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProfileItem({
+  icon: Icon,
+  label,
+  checked
+}: {
+  icon: typeof Settings;
+  label: string;
+  checked?: boolean;
+}) {
+  return (
+    <button className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+      <span className="flex items-center gap-3">
+        <Icon className="h-4 w-4 text-royal" />
+        {label}
+      </span>
+      {checked ? <input type="checkbox" checked readOnly className="h-4 w-4 accent-blue-600" /> : null}
+    </button>
   );
 }
