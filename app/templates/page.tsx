@@ -108,7 +108,13 @@ function TemplateCard({
   );
 }
 
-export function TemplateWorkflow({ initialWorkflow = "finder" }: { initialWorkflow?: Workflow }) {
+export function TemplateWorkflow({
+  initialWorkflow = "finder",
+  locked = false
+}: {
+  initialWorkflow?: Workflow;
+  locked?: boolean;
+}) {
   const [workflow, setWorkflow] = useState<Workflow>(initialWorkflow);
   const [finderStep, setFinderStep] = useState(0);
   const [videoStep, setVideoStep] = useState(0);
@@ -214,25 +220,27 @@ export function TemplateWorkflow({ initialWorkflow = "finder" }: { initialWorkfl
           </button>
         </div>
 
-        <div className="inline-flex rounded-lg border border-slate-200 bg-white p-1 shadow-sm">
-          {[
-            ["finder", "AI Product Finder & Listing Copier"],
-            ["video", "Reseller Auto-Video & Content Pipeline"]
-          ].map(([value, label]) => (
-            <button
-              key={value}
-              onClick={() => setWorkflow(value as Workflow)}
-              className={cn(
-                "rounded-md px-4 py-2 text-sm font-bold transition",
-                workflow === value ? "bg-royal text-white" : "text-slate-600 hover:bg-slate-50"
-              )}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+        {locked ? null : (
+          <div className="inline-flex rounded-lg border border-slate-200 bg-white p-1 shadow-sm">
+            {[
+              ["finder", "AI Product Finder & Listing Copier"],
+              ["video", "Reseller Auto-Video & Content Pipeline"]
+            ].map(([value, label]) => (
+              <button
+                key={value}
+                onClick={() => setWorkflow(value as Workflow)}
+                className={cn(
+                  "rounded-md px-4 py-2 text-sm font-bold transition",
+                  workflow === value ? "bg-royal text-white" : "text-slate-600 hover:bg-slate-50"
+                )}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
 
-        <div className="mt-6 grid gap-6 xl:grid-cols-[320px_1fr]">
+        <div className={cn("grid gap-6 xl:grid-cols-[320px_1fr]", locked ? "mt-0" : "mt-6")}>
           <aside className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
             <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Workflow progress</p>
             <div className="mt-5 space-y-2">
