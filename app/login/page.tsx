@@ -19,7 +19,14 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const returnTo = searchParams.get("returnTo") || "/home";
-  const { signInWithEmail, signInWithGoogle, isAuthenticated, loading } = useUser();
+  const {
+    signInWithEmail,
+    signInWithGoogle,
+    isAuthenticated,
+    loading,
+    authConfigured,
+    authConfigMessage
+  } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [acceptedRisk, setAcceptedRisk] = useState(false);
@@ -81,6 +88,11 @@ function LoginForm() {
           <SecurityCheck checked={acceptedAi} onChange={setAcceptedAi}>
             I will review AI-generated listings, images, and content before publishing.
           </SecurityCheck>
+          {!loading && !authConfigured ? (
+            <p className="rounded-lg bg-amber-50 p-3 text-xs font-semibold text-amber-700">
+              {authConfigMessage}
+            </p>
+          ) : null}
           {status ? <p className="rounded-lg bg-amber-50 p-3 text-xs font-semibold text-amber-700">{status}</p> : null}
           <button className="w-full rounded-lg bg-royal px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-700">
             Login
