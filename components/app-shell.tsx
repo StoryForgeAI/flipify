@@ -37,7 +37,7 @@ const links = [
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { email, credits, signOut } = useUser();
+  const { displayEmail, credits, subscription, signOut } = useUser();
   const [menuOpen, setMenuOpen] = useState(false);
   const isFocusedRoute =
     /^\/tools\/[^/]+/.test(pathname) ||
@@ -102,7 +102,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               credits
             </div>
             <ProfileDropdown
-              email={email}
+              email={displayEmail}
+              subscription={subscription}
               credits={credits}
               onLogout={async () => {
                 await signOut();
@@ -180,10 +181,12 @@ function SidebarContent({
 
 function ProfileDropdown({
   email,
+  subscription,
   credits,
   onLogout
 }: {
   email: string;
+  subscription: string;
   credits: number;
   onLogout: () => void;
 }) {
@@ -206,12 +209,16 @@ function ProfileDropdown({
             </div>
             <div className="min-w-0">
               <p className="truncate text-sm font-bold text-ink">{email}</p>
-              <p className="text-xs font-semibold text-slate-500">Free workspace</p>
+              <p className="text-xs font-semibold text-slate-500">{subscription} workspace</p>
             </div>
           </div>
           <div className="mt-4 flex items-center justify-between rounded-lg border border-blue-100 bg-white px-3 py-2">
             <span className="text-sm font-bold text-ink">Available credits</span>
             <span className="grid h-9 w-9 place-items-center rounded-full bg-royal text-sm font-black text-white">{credits}</span>
+          </div>
+          <div className="mt-2 flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-2">
+            <span className="text-sm font-bold text-ink">Subscription</span>
+            <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-black text-white">{subscription}</span>
           </div>
         </div>
         <div className="mt-2 space-y-1">

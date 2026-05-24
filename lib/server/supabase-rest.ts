@@ -5,7 +5,7 @@ type Json = Record<string, unknown>;
 
 function getSupabaseConfig() {
   return {
-    url: optionalEnv("NEXT_PUBLIC_SUPABASE_URL"),
+    url: optionalEnv("NEXT_PUBLIC_SUPABASE_URL") || optionalEnv("SUPABASE_URL"),
     serviceRoleKey: optionalEnv("SUPABASE_SERVICE_ROLE_KEY")
   };
 }
@@ -36,23 +36,27 @@ async function supabaseFetch(path: string, init?: RequestInit) {
 }
 
 export async function getOrCreateCreditAccount(email: string) {
+  if (!email || email === "aiwithtomx@example.com") {
+    throw new Error("A real authenticated email is required for profile creation.");
+  }
+
   const encodedEmail = encodeURIComponent(email);
-  const existing = await supabaseFetch(`profiles?email=eq.${encodedEmail}&select=id,email,credits`);
+  const existing = await supabaseFetch(`profiles?email=eq.${encodedEmail}&select=id,email,credits,subscription`);
 
   if (Array.isArray(existing) && existing[0]) {
-    return existing[0] as { id: string; email: string; credits: number };
+    return existing[0] as { id: string; email: string; credits: number; subscription?: string };
   }
 
   const created = await supabaseFetch("profiles", {
     method: "POST",
-    body: JSON.stringify({ email, credits: STARTER_CREDITS })
+    body: JSON.stringify({ email, credits: STARTER_CREDITS, subscription: "Free" })
   });
 
   if (Array.isArray(created) && created[0]) {
-    return created[0] as { id: string; email: string; credits: number };
+    return created[0] as { id: string; email: string; credits: number; subscription?: string };
   }
 
-  return { id: "local-preview", email, credits: STARTER_CREDITS };
+  return { id: "local-preview", email, credits: STARTER_CREDITS, subscription: "Free" };
 }
 
 export async function debitCredits(email: string, amount: number, meta: Json) {

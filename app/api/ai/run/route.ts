@@ -44,7 +44,12 @@ function parseJsonOutput(text: string) {
 
 export async function POST(request: Request) {
   const body = (await request.json()) as RunRequest;
-  const email = body.email || "aiwithtomx@example.com";
+  const email = body.email;
+
+  if (!email) {
+    return NextResponse.json({ error: "You must be logged in before running AI.", cost: getCreditCost(body.action) }, { status: 401 });
+  }
+
   const cost = getCreditCost(body.action);
   const account = await getOrCreateCreditAccount(email);
 

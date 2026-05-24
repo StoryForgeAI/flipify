@@ -7,12 +7,14 @@ import { createBrowserSupabaseClient } from "@/lib/supabase-client";
 
 type UserContextValue = {
   email: string;
+  displayEmail: string;
   user: User | null;
   loading: boolean;
   authConfigured: boolean;
   authConfigMessage: string;
   isAuthenticated: boolean;
   credits: number;
+  subscription: string;
   setCredits: (credits: number) => void;
   spendLocalCredits: (amount: number) => boolean;
   signInWithEmail: (email: string, password: string) => Promise<{ error?: string }>;
@@ -22,7 +24,6 @@ type UserContextValue = {
 };
 
 const UserContext = createContext<UserContextValue | null>(null);
-const fallbackEmail = "aiwithtomx@example.com";
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -31,7 +32,9 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const [authConfigured, setAuthConfigured] = useState(false);
   const [authConfigMessage, setAuthConfigMessage] = useState("");
   const [credits, setCredits] = useState(STARTER_CREDITS);
-  const email = user?.email || fallbackEmail;
+  const [subscription, setSubscription] = useState("Free");
+  const email = user?.email || "";
+  const displayEmail = user?.email || "Not signed in";
 
   useEffect(() => {
     let mounted = true;
@@ -96,39 +99,47 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (!email) {
+    if (!user?.email) {
       return;
     }
 
-    const key = `flipify-credits:${email}`;
+    const key = `flipify-credits:${user.email}`;
     const stored = window.localStorage.getItem(key);
     if (stored) {
       setCredits(Number(stored));
     }
 
-    fetch(`/api/credits?email=${encodeURIComponent(email)}`)
+    fetch(`/api/credits?email=${encodeURIComponent(user.email)}`)
       .then((response) => response.json())
-      .then((data: { credits?: number }) => {
+      .then((data: { credits?: number; subscription?: string }) => {
         if (typeof data.credits === "number") {
           setCredits(data.credits);
         }
+        if (data.subscription) {
+          setSubscription(data.subscription);
+        }
       })
       .catch(() => setCredits(STARTER_CREDITS));
-  }, [email]);
+  }, [user?.email]);
 
   useEffect(() => {
-    window.localStorage.setItem(`flipify-credits:${email}`, String(credits));
-  }, [credits, email]);
+    if (!user?.email) {
+      return;
+    }
+    window.localStorage.setItem(`flipify-credits:${user.email}`, String(credits));
+  }, [credits, user?.email]);
 
   const value = useMemo(
     () => ({
       email,
+      displayEmail,
       user,
       loading,
       authConfigured,
       authConfigMessage,
       isAuthenticated: Boolean(user),
       credits,
+      subscription,
       setCredits,
       spendLocalCredits: (amount: number) => {
         if (credits < amount) {
@@ -173,7 +184,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         await supabase?.auth.signOut();
       }
     }),
-    [authConfigMessage, authConfigured, credits, email, loading, supabase, user]
+    [authConfigMessage, authConfigured, credits, displayEmail, email, loading, subscription, supabase, user]
   );
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

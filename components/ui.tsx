@@ -32,19 +32,20 @@ export function ToolCard({ tool }: { tool: Tool }) {
   const cost = getCreditCost(tool.action);
 
   return (
-    <Link href={`/tools/${tool.slug}`} className="group relative flex min-h-72 overflow-hidden rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-soft">
-      <div className="absolute inset-x-0 top-0 h-1 bg-royal opacity-0 transition group-hover:opacity-100" />
+    <Link href={`/tools/${tool.slug}`} className="group relative flex min-h-80 overflow-hidden rounded-2xl border border-white/10 bg-slate-950 p-5 text-white shadow-soft transition hover:-translate-y-1 hover:border-blue-300/40 hover:shadow-2xl">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.35),transparent_34%),radial-gradient(circle_at_90%_10%,rgba(14,165,233,0.2),transparent_30%)] opacity-80" />
+      <div className="absolute inset-x-0 top-0 h-1 bg-blue-400 opacity-0 transition group-hover:opacity-100" />
       <div className="flex w-full flex-col">
-      <div className={cn("grid h-12 w-12 place-items-center rounded-lg", tool.accent)}>
+      <div className={cn("relative grid h-12 w-12 place-items-center rounded-xl bg-white text-royal")}>
         <Icon className="h-5 w-5" />
       </div>
-      <h3 className="mt-5 text-lg font-semibold text-ink">{tool.title}</h3>
-      <p className="mt-2 text-sm font-bold text-royal">{tool.promise}</p>
-      <p className="mt-2 flex-1 text-sm leading-6 text-slate-600">{tool.description}</p>
-      <div className="mt-5 inline-flex w-fit items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-black text-royal">
+      <h3 className="relative mt-5 text-xl font-semibold text-white">{tool.title}</h3>
+      <p className="relative mt-2 text-sm font-bold text-blue-200">{tool.promise}</p>
+      <p className="relative mt-3 flex-1 text-sm leading-6 text-slate-300">{tool.description}</p>
+      <div className="relative mt-5 inline-flex w-fit items-center rounded-full border border-blue-300/30 bg-blue-400/20 px-3 py-1 text-xs font-black text-blue-100">
         {cost} credits
       </div>
-      <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-royal">
+      <span className="relative mt-6 inline-flex w-fit items-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-black text-royal transition group-hover:bg-blue-50">
         Open full-screen tool
         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
       </span>

@@ -7,7 +7,7 @@ import { tools } from "@/lib/data";
 import { useUser } from "@/components/user-provider";
 
 export default function HomePage() {
-  const { credits } = useUser();
+  const { credits, subscription } = useUser();
 
   return (
     <main>
@@ -18,7 +18,7 @@ export default function HomePage() {
               <h1 className="text-3xl font-semibold tracking-tight text-ink">Hey aiwithtomx!</h1>
               <span className="inline-flex items-center gap-1 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-bold text-royal">
                 <Crown className="h-3.5 w-3.5" />
-                Pro Member
+                {subscription} Member
               </span>
             </div>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
