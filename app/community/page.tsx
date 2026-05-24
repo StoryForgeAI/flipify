@@ -10,9 +10,9 @@ export default function CommunityPage() {
         description="A clean placeholder for mastermind drops, winning flips, and seller playbooks."
       />
       <section className="px-5 py-8 sm:px-8">
-        <div className="rounded-lg border border-slate-200 bg-white p-8 shadow-sm">
+        <div className="rounded-lg border border-white/10 bg-white/10 p-8 shadow-sm">
           <Users className="h-10 w-10 text-royal" />
-          <h2 className="mt-5 text-2xl font-semibold text-ink">Share wins, scripts, and supplier notes.</h2>
+          <h2 className="mt-5 text-2xl font-semibold text-white">Share wins, scripts, and supplier notes.</h2>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
             Flipify Community is ready for future social features while keeping the dashboard route structure complete.
           </p>

@@ -13,13 +13,11 @@ const actionPrompts: Record<CreditAction, string> = {
   product_finder:
     "Return JSON with keys: summary, items. items must be an array of 3 resale opportunities with item, brand, sourceQuery, targetMarketplace, estimatedBuyPriceEUR, estimatedResalePriceEUR, estimatedProfitEUR, dealScore, riskNotes.",
   description_optimizer:
-    "Return JSON with keys: title, description, bulletPoints, hashtags, etsyTags. Make it marketplace-ready, accurate, and compelling.",
+    "Return JSON with keys: title, description, bulletPoints, hashtags, ebayItemSpecifics, searchKeywords. Make it eBay-ready, accurate, and compelling.",
   pricing_intelligence:
     "Return JSON with keys: marketValueRangeEUR, suggestedListPriceEUR, floorPriceEUR, targetProfitEUR, marginPercent, confidence, pricingNotes.",
   photo_studio:
     "Return JSON with keys: studioPrompt, background, lighting, editingChecklist, marketplacePhotoTips. Do not claim an image file was generated.",
-  video_generator:
-    "Return JSON with keys: hook, storyboard, captions, voiceover, shotList, socialPostCopy. Make it short-form video ready.",
   template_finder:
     "Return JSON with keys: foundProduct, supplierTrust, seoListing, visualEnhancement, pricing, exportChecklist.",
   template_video:
@@ -72,7 +70,7 @@ export async function POST(request: Request) {
       {
         role: "system",
         content:
-          "You are Flipify, an expert AI fashion resale operating system. Be specific, practical, Etsy-aware, and conservative. Return valid JSON only."
+          "You are Flipify, an expert AI fashion resale operating system. Be specific, practical, eBay-aware, and conservative. Return valid JSON only."
       },
       {
         role: "user",

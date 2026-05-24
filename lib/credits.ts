@@ -3,7 +3,6 @@ export type CreditAction =
   | "description_optimizer"
   | "pricing_intelligence"
   | "photo_studio"
-  | "video_generator"
   | "template_finder"
   | "template_video";
 
@@ -14,7 +13,6 @@ export const creditCosts: Record<CreditAction, number> = {
   description_optimizer: 2,
   pricing_intelligence: 3,
   photo_studio: 5,
-  video_generator: 5,
   template_finder: 8,
   template_video: 10
 };

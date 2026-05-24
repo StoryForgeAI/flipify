@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { BadgeEuro, ExternalLink } from "lucide-react";
+import { BadgeEuro, ExternalLink, PackagePlus } from "lucide-react";
 import { useInventory } from "@/components/inventory-provider";
 import { PageHeader, MetricPill } from "@/components/ui";
 
@@ -15,9 +15,24 @@ export default function ProductsPage() {
         title="Active products"
         description="Items you have processed, exported, or published from Flipify workflows."
       />
+      {items.length === 0 ? (
+        <section className="px-5 py-8 sm:px-8">
+          <div className="grid min-h-[420px] place-items-center rounded-2xl border border-white/10 bg-white/10 p-8 text-center">
+            <div>
+              <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-blue-400/15 text-blue-100">
+                <PackagePlus className="h-8 w-8" />
+              </div>
+              <h2 className="mt-5 text-2xl font-semibold text-white">No products yet</h2>
+              <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-300">
+                Your inventory starts empty. Publish a product from a workflow or upload one to begin tracking eBay-ready listings.
+              </p>
+            </div>
+          </div>
+        </section>
+      ) : null}
       <section className="grid gap-5 px-5 py-8 sm:px-8 md:grid-cols-2 xl:grid-cols-3">
         {items.map((item) => (
-          <article key={item.id} className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+          <article key={item.id} className="overflow-hidden rounded-lg border border-white/10 bg-white/10 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
             <div className="relative aspect-[4/3] bg-slate-100">
               <Image src={item.image} alt={item.name} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
               <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-ink shadow-sm">
@@ -28,7 +43,7 @@ export default function ProductsPage() {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-wide text-royal">{item.brand}</p>
-                  <h2 className="mt-1 text-lg font-semibold text-ink">{item.name}</h2>
+                  <h2 className="mt-1 text-lg font-semibold text-white">{item.name}</h2>
                 </div>
                 <button className="rounded-lg border border-slate-200 p-2 text-slate-500 transition hover:border-royal hover:text-royal">
                   <ExternalLink className="h-4 w-4" />

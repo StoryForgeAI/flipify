@@ -54,8 +54,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen bg-mist">
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-72 border-r border-slate-200 bg-white px-5 py-6 lg:flex lg:flex-col">
+    <div className="min-h-screen bg-slate-950 text-white">
+      <aside className="fixed inset-y-0 left-0 z-30 hidden w-72 border-r border-white/10 bg-slate-950 px-5 py-6 lg:flex lg:flex-col">
         <Logo />
         <SidebarContent pathname={pathname} />
       </aside>
@@ -66,13 +66,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             className="absolute inset-0 bg-ink/30 backdrop-blur-sm"
             onClick={() => setMenuOpen(false)}
           />
-          <aside className="relative flex h-full w-[min(86vw,320px)] flex-col border-r border-slate-200 bg-white px-5 py-5 shadow-soft">
+          <aside className="relative flex h-full w-[min(86vw,320px)] flex-col border-r border-white/10 bg-slate-950 px-5 py-5 shadow-soft">
             <div className="flex items-center justify-between">
               <Logo />
               <button
                 aria-label="Close menu"
                 onClick={() => setMenuOpen(false)}
-                className="grid h-10 w-10 place-items-center rounded-lg border border-slate-200 text-slate-600"
+                className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 text-slate-300"
               >
                 <span className="text-xl leading-none">x</span>
               </button>
@@ -82,12 +82,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       ) : null}
       <div className="lg:pl-72">
-        <div className="sticky top-0 z-20 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-4 backdrop-blur lg:px-8">
+        <div className="sticky top-0 z-20 flex items-center justify-between border-b border-white/10 bg-slate-950/95 px-4 py-4 backdrop-blur lg:px-8">
           <div className="flex items-center gap-3 lg:hidden">
             <button
               aria-label="Open menu"
               onClick={() => setMenuOpen(true)}
-              className="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 bg-white text-ink shadow-sm"
+              className="grid h-11 w-11 place-items-center rounded-lg border border-white/10 bg-white/10 text-white shadow-sm"
             >
               <Menu className="h-5 w-5" />
             </button>
@@ -97,7 +97,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             Flipify AI resale dashboard
           </div>
           <div className="flex items-center gap-3">
-            <div className="hidden items-center gap-2 rounded-full border border-blue-100 bg-blue-50 py-1 pl-1 pr-3 text-sm font-black text-royal sm:flex">
+            <div className="hidden items-center gap-2 rounded-full border border-blue-300/30 bg-blue-400/15 py-1 pl-1 pr-3 text-sm font-black text-blue-100 sm:flex">
               <span className="grid h-8 w-8 place-items-center rounded-full bg-royal text-white">{credits}</span>
               credits
             </div>
@@ -150,8 +150,8 @@ function SidebarContent({
               className={cn(
                 "flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-semibold transition",
                 active
-                  ? "bg-blue-50 text-royal"
-                  : "text-slate-600 hover:bg-slate-50 hover:text-ink"
+                  ? "bg-blue-400/15 text-blue-100"
+                  : "text-slate-300 hover:bg-white/10 hover:text-white"
               )}
             >
               <Icon className="h-4 w-4" />
@@ -160,17 +160,17 @@ function SidebarContent({
           );
         })}
       </nav>
-      <div className="mt-auto space-y-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+      <div className="mt-auto space-y-3 rounded-xl border border-white/10 bg-white/10 p-4">
         <div className="flex items-center gap-3">
           <div className="grid h-10 w-10 place-items-center rounded-lg bg-ink text-sm font-bold text-white">
             AI
           </div>
           <div>
-            <p className="text-sm font-semibold text-ink">Hey aiwithtomx!</p>
+              <p className="text-sm font-semibold text-white">Flipify account</p>
             <p className="text-xs text-slate-500">Reseller workspace</p>
           </div>
         </div>
-        <button className="flex w-full items-center justify-center gap-2 rounded-lg border border-blue-100 bg-white px-3 py-2 text-sm font-semibold text-royal transition hover:border-royal hover:shadow-sm">
+        <button className="flex w-full items-center justify-center gap-2 rounded-lg border border-blue-300/30 bg-blue-400/15 px-3 py-2 text-sm font-semibold text-blue-100 transition hover:bg-blue-400/25">
           <Crown className="h-4 w-4" />
           Upgrade to Pro
         </button>
@@ -192,32 +192,32 @@ function ProfileDropdown({
 }) {
   return (
     <div className="group relative">
-      <button className="flex items-center gap-3 rounded-full border border-slate-200 bg-white py-1 pl-1 pr-3 shadow-sm transition hover:border-blue-200 hover:shadow-md">
-        <span className="grid h-9 w-9 place-items-center rounded-full bg-slate-100 text-royal">
+      <button className="flex items-center gap-3 rounded-full border border-white/10 bg-white/10 py-1 pl-1 pr-3 shadow-sm transition hover:border-blue-300/40">
+        <span className="grid h-9 w-9 place-items-center rounded-full bg-blue-400/15 text-blue-100">
           <Mail className="h-4 w-4" />
         </span>
         <span className="hidden text-left sm:block">
           <span className="block text-xs font-semibold text-slate-500">Registered email</span>
-          <span className="block max-w-44 truncate text-sm font-bold text-ink">{email}</span>
+          <span className="block max-w-44 truncate text-sm font-bold text-white">{email}</span>
         </span>
       </button>
-      <div className="invisible absolute right-0 top-12 w-80 translate-y-2 rounded-xl border border-slate-200 bg-white p-3 opacity-0 shadow-soft transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-        <div className="rounded-lg bg-slate-50 p-4">
+      <div className="invisible absolute right-0 top-12 w-80 translate-y-2 rounded-xl border border-white/10 bg-slate-900 p-3 opacity-0 shadow-soft transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+        <div className="rounded-lg bg-white/10 p-4">
           <div className="flex items-center gap-3">
             <div className="grid h-11 w-11 place-items-center rounded-full bg-royal text-white">
               <UserCircle className="h-6 w-6" />
             </div>
             <div className="min-w-0">
-              <p className="truncate text-sm font-bold text-ink">{email}</p>
+              <p className="truncate text-sm font-bold text-white">{email}</p>
               <p className="text-xs font-semibold text-slate-500">{subscription} workspace</p>
             </div>
           </div>
-          <div className="mt-4 flex items-center justify-between rounded-lg border border-blue-100 bg-white px-3 py-2">
-            <span className="text-sm font-bold text-ink">Available credits</span>
+          <div className="mt-4 flex items-center justify-between rounded-lg border border-white/10 bg-slate-950 px-3 py-2">
+            <span className="text-sm font-bold text-white">Available credits</span>
             <span className="grid h-9 w-9 place-items-center rounded-full bg-royal text-sm font-black text-white">{credits}</span>
           </div>
-          <div className="mt-2 flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-2">
-            <span className="text-sm font-bold text-ink">Subscription</span>
+          <div className="mt-2 flex items-center justify-between rounded-lg border border-white/10 bg-slate-950 px-3 py-2">
+            <span className="text-sm font-bold text-white">Subscription</span>
             <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-black text-white">{subscription}</span>
           </div>
         </div>
@@ -246,7 +246,7 @@ function ProfileItem({
   checked?: boolean;
 }) {
   return (
-    <button className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+    <button className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-bold text-slate-200 transition hover:bg-white/10">
       <span className="flex items-center gap-3">
         <Icon className="h-4 w-4 text-royal" />
         {label}
@@ -265,7 +265,7 @@ function ProfileLink({
   label: string;
 }) {
   return (
-    <Link href={href} className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+    <Link href={href} className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-bold text-slate-200 transition hover:bg-white/10">
       <Icon className="h-4 w-4 text-royal" />
       {label}
     </Link>

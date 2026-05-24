@@ -2,7 +2,6 @@ import {
   BadgeEuro,
   Bot,
   Camera,
-  Clapperboard,
   Search,
   Sparkles,
   Tags
@@ -43,15 +42,6 @@ export const tools: Tool[] = [
     promise: "Find the flip before everyone else sees it."
   },
   {
-    slug: "viral-video-generator",
-    title: "Viral Video Generator",
-    description: "Turn your item photos into high-converting TikTok/Shorts faceless videos.",
-    icon: Clapperboard,
-    accent: "bg-fuchsia-50 text-fuchsia-700",
-    action: "video_generator",
-    promise: "Produce scroll-stopping resale content."
-  },
-  {
     slug: "description-tag-optimizer",
     title: "Description & Tag Optimizer",
     description: "Generate SEO-optimized titles, descriptions, and high-traffic hashtags.",
@@ -80,44 +70,7 @@ export const tools: Tool[] = [
   }
 ];
 
-export const starterInventory: InventoryItem[] = [
-  {
-    id: "inv-1",
-    name: "Vintage Adidas Track Jacket",
-    brand: "Adidas",
-    status: "Published",
-    image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=80",
-    foundPrice: 12,
-    marketValue: 45,
-    profit: 25,
-    score: 94,
-    channel: "Vinted"
-  },
-  {
-    id: "inv-2",
-    name: "Y2K Denim Cargo Skirt",
-    brand: "Diesel",
-    status: "Exported",
-    image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=900&q=80",
-    foundPrice: 18,
-    marketValue: 62,
-    profit: 34,
-    score: 89,
-    channel: "Depop"
-  },
-  {
-    id: "inv-3",
-    name: "Nike ACG Fleece Pullover",
-    brand: "Nike",
-    status: "Draft",
-    image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80",
-    foundPrice: 24,
-    marketValue: 74,
-    profit: 39,
-    score: 91,
-    channel: "Grailed"
-  }
-];
+export const starterInventory: InventoryItem[] = [];
 
 export const aiFoundProduct = {
   name: "Vintage Adidas Track Jacket",
@@ -127,12 +80,12 @@ export const aiFoundProduct = {
   suggestedPrice: 39,
   profit: 25,
   score: 94,
-  supplier: "Etsy Supplier",
+  supplier: "eBay seller",
   safeScore: 85,
   image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=80",
   title: "Vintage Adidas Track Jacket - Royal Blue Retro Streetwear",
   description:
-    "Clean vintage Adidas track jacket with a sharp retro profile, lightweight feel, and strong streetwear styling potential. Ideal for Vinted, Depop, and Grailed buyers looking for authentic sportswear.",
+    "Clean vintage Adidas track jacket with a sharp retro profile, lightweight feel, and strong streetwear styling potential. Ideal for eBay buyers looking for authentic sportswear.",
   hashtags: "#vintageadidas #trackjacket #streetwear #resellfind #vintagefashion"
 };
 

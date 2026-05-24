@@ -3,15 +3,15 @@ import { Logo } from "@/components/logo";
 
 export default function TermsOfServicePage() {
   return (
-    <main className="min-h-screen bg-slate-50 px-5 py-8 text-ink">
+    <main className="min-h-screen bg-slate-950 px-5 py-8 text-white">
       <div className="mx-auto max-w-3xl">
         <div className="mb-8 flex items-center justify-between">
           <Logo />
-          <Link href="/home" className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700">
+          <Link href="/home" className="rounded-lg border border-white/10 bg-white/10 px-4 py-2 text-sm font-bold text-white">
             Back to app
           </Link>
         </div>
-        <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-soft sm:p-8">
+        <article className="rounded-xl border border-white/10 bg-white/10 p-6 shadow-soft sm:p-8">
           <p className="text-sm font-bold uppercase tracking-wide text-royal">Legal</p>
           <h1 className="mt-2 text-4xl font-semibold tracking-tight">Terms of Service</h1>
           <p className="mt-2 text-sm text-slate-500">Last updated: May 23, 2026</p>

@@ -8,10 +8,10 @@ export default function PrivacyPolicyPage() {
         Flipify collects account information, authentication data, workflow inputs, uploaded product details, credit usage events, and integration metadata needed to operate the platform.
       </p>
       <p>
-        We use this data to provide AI resale tools, manage credits, save inventory, connect supported marketplaces such as Etsy, improve product quality, and protect the service from abuse.
+        We use this data to provide AI resale tools, manage credits, save inventory, connect supported marketplaces such as eBay, improve product quality, and protect the service from abuse.
       </p>
       <p>
-        When you connect third-party services, their APIs may process your data according to their own policies. You should review Etsy, Supabase, OpenAI, and any connected provider terms before publishing or syncing listings.
+        When you connect third-party services, their APIs may process your data according to their own policies. You should review eBay, Supabase, OpenAI, and any connected provider terms before publishing or syncing listings.
       </p>
       <p>
         API keys and service-role secrets must be stored only in Vercel environment variables. Never place private keys in client-side code.
@@ -33,15 +33,15 @@ function LegalPage({
   children: React.ReactNode;
 }) {
   return (
-    <main className="min-h-screen bg-slate-50 px-5 py-8 text-ink">
+    <main className="min-h-screen bg-slate-950 px-5 py-8 text-white">
       <div className="mx-auto max-w-3xl">
         <div className="mb-8 flex items-center justify-between">
           <Logo />
-          <Link href="/home" className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700">
+          <Link href="/home" className="rounded-lg border border-white/10 bg-white/10 px-4 py-2 text-sm font-bold text-white">
             Back to app
           </Link>
         </div>
-        <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-soft sm:p-8">
+        <article className="rounded-xl border border-white/10 bg-white/10 p-6 shadow-soft sm:p-8">
           <p className="text-sm font-bold uppercase tracking-wide text-royal">Legal</p>
           <h1 className="mt-2 text-4xl font-semibold tracking-tight">{title}</h1>
           <p className="mt-2 text-sm text-slate-500">Last updated: {updated}</p>

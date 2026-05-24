@@ -16,7 +16,8 @@ export function InventoryProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const stored = window.localStorage.getItem("flipify-inventory");
     if (stored) {
-      setItems(JSON.parse(stored) as InventoryItem[]);
+      const parsed = JSON.parse(stored) as InventoryItem[];
+      setItems(parsed.filter((item) => !["inv-1", "inv-2", "inv-3"].includes(item.id)));
     }
   }, []);
 

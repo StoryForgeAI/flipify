@@ -22,7 +22,7 @@ export default function ToolsPage() {
           </div>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight sm:text-6xl">Choose your AI tool.</h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">
-            Full-screen workspaces for finding products, optimizing Etsy listings, pricing flips, creating content, and styling product photos.
+            Full-screen workspaces for finding products, optimizing eBay listings, pricing flips, and styling product photos.
           </p>
           <div className="relative mt-8 max-w-xl">
             <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />

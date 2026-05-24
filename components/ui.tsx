@@ -16,11 +16,11 @@ export function PageHeader({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-4 border-b border-slate-200 bg-white px-5 py-8 sm:px-8 xl:flex-row xl:items-end xl:justify-between">
+    <div className="flex flex-col gap-4 border-b border-white/10 bg-slate-950 px-5 py-8 text-white sm:px-8 xl:flex-row xl:items-end xl:justify-between">
       <div>
         {eyebrow ? <p className="text-sm font-bold uppercase tracking-wide text-royal">{eyebrow}</p> : null}
-        <h1 className="mt-1 text-3xl font-semibold tracking-tight text-ink">{title}</h1>
-        {description ? <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">{description}</p> : null}
+        <h1 className="mt-1 text-3xl font-semibold tracking-tight text-white">{title}</h1>
+        {description ? <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">{description}</p> : null}
       </div>
       {action}
     </div>
@@ -56,9 +56,9 @@ export function ToolCard({ tool }: { tool: Tool }) {
 
 export function MetricPill({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-slate-200 bg-white px-4 py-3">
-      <p className="text-xs font-medium text-slate-500">{label}</p>
-      <p className="mt-1 text-lg font-semibold text-ink">{value}</p>
+    <div className="rounded-lg border border-white/10 bg-white/10 px-4 py-3">
+      <p className="text-xs font-medium text-slate-400">{label}</p>
+      <p className="mt-1 text-lg font-semibold text-white">{value}</p>
     </div>
   );
 }

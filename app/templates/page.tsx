@@ -60,7 +60,7 @@ export default function TemplatesPage() {
         <TemplateCard
           href="/templates/template1"
           title="AI Product Finder & Listing Copier"
-          description="Find a product, score supplier trust, generate Etsy-ready SEO copy, enhance photos, calculate margin, and export."
+          description="Find a product, score seller trust, generate eBay-ready SEO copy, enhance photos, calculate margin, and export."
           cost={getCreditCost("template_finder")}
           icon={ShoppingBag}
         />
@@ -160,7 +160,7 @@ export function TemplateWorkflow({
       marketValue: aiFoundProduct.marketValue,
       profit: Math.max(resellPrice - aiFoundProduct.buyingPrice - 2, 0),
       score: aiFoundProduct.score,
-      channel: "Vinted"
+      channel: "eBay"
     };
     addItem(item);
     setPublished(true);
@@ -219,8 +219,8 @@ export function TemplateWorkflow({
           description="Run complete resale workflows with focused steps, live states, and inventory handoff."
         />
       )}
-      <section className={cn("px-5 py-8 sm:px-8", locked && "text-ink")}>
-        <div className="mb-5 flex flex-col gap-3 rounded-xl border border-blue-100 bg-blue-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+      <section className={cn("px-5 py-8 sm:px-8", locked && "text-white")}>
+        <div className="mb-5 flex flex-col gap-3 rounded-xl border border-blue-300/30 bg-blue-400/15 p-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-black text-royal">{credits} credits available</p>
             <p className="mt-1 text-sm text-slate-600">{aiStatus}</p>
@@ -232,7 +232,7 @@ export function TemplateWorkflow({
         </div>
 
         {locked ? null : (
-          <div className="inline-flex rounded-lg border border-slate-200 bg-white p-1 shadow-sm">
+          <div className="inline-flex rounded-lg border border-white/10 bg-white/10 p-1 shadow-sm">
             {[
               ["finder", "AI Product Finder & Listing Copier"],
               ["video", "Reseller Auto-Video & Content Pipeline"]
@@ -242,7 +242,7 @@ export function TemplateWorkflow({
                 onClick={() => setWorkflow(value as Workflow)}
                 className={cn(
                   "rounded-md px-4 py-2 text-sm font-bold transition",
-                  workflow === value ? "bg-royal text-white" : "text-slate-600 hover:bg-slate-50"
+                  workflow === value ? "bg-royal text-white" : "text-slate-300 hover:bg-white/10"
                 )}
               >
                 {label}
@@ -252,7 +252,7 @@ export function TemplateWorkflow({
         )}
 
         <div className={cn("grid gap-6 xl:grid-cols-[320px_1fr]", locked ? "mt-0" : "mt-6")}>
-          <aside className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+          <aside className="rounded-lg border border-white/10 bg-white/10 p-5 shadow-sm">
             <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Workflow progress</p>
             <div className="mt-5 space-y-2">
               {activeSteps.map((step, index) => (
@@ -265,7 +265,7 @@ export function TemplateWorkflow({
                       ? "border-blue-200 bg-blue-50 text-royal"
                       : index < activeStep
                         ? "border-emerald-100 bg-emerald-50 text-emerald-700"
-                        : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
+                        : "border-white/10 bg-white/10 text-slate-300 hover:bg-white/15"
                   )}
                 >
                   <span className={cn(
@@ -280,7 +280,7 @@ export function TemplateWorkflow({
             </div>
           </aside>
 
-          <section className="min-h-[650px] rounded-lg border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
+          <section className="min-h-[650px] rounded-lg border border-white/10 bg-slate-900 p-5 text-white shadow-sm sm:p-7">
             {workflow === "finder" ? (
               <FinderStep
                 step={finderStep}
@@ -310,7 +310,7 @@ export function TemplateWorkflow({
               <button
                 onClick={previousStep}
                 disabled={activeStep === 0}
-                className="rounded-lg border border-slate-200 px-4 py-3 text-sm font-bold text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+                className="rounded-lg border border-white/10 px-4 py-3 text-sm font-bold text-slate-300 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Previous Step
               </button>

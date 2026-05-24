@@ -6,7 +6,7 @@ import { LandingCta } from "@/components/landing-cta";
 const faqs = [
   {
     question: "What marketplaces does Flipify help with?",
-    answer: "Flipify is designed around fashion resale workflows for Vinted, Depop, eBay, Grailed, Etsy, TikTok Shop, Instagram Reels, and YouTube Shorts."
+    answer: "Flipify is designed around fashion resale workflows for eBay-first clothing sellers and high-margin marketplace flips."
   },
   {
     question: "Can I use it before buying inventory?",
@@ -43,7 +43,7 @@ const plans = [
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-white text-ink">
+    <main className="min-h-screen bg-slate-950 text-white">
       <header className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
         <Logo />
         <div className="flex items-center gap-3">
@@ -54,14 +54,14 @@ export default function LandingPage() {
         </div>
       </header>
 
-      <section className="glass-grid border-y border-slate-200 bg-slate-50">
+      <section className="glass-grid border-y border-white/10 bg-slate-950">
         <div className="mx-auto grid min-h-[720px] max-w-7xl items-center gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1fr_0.9fr]">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-3 py-1 text-sm font-bold text-royal">
               <Sparkles className="h-4 w-4" />
               The AI Reselling OS
             </div>
-            <h1 className="mt-6 max-w-4xl text-5xl font-semibold tracking-tight text-ink sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 max-w-4xl text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
               The AI Reselling Operating System
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
@@ -76,11 +76,11 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-soft">
+          <div className="rounded-xl border border-white/10 bg-white/10 p-4 shadow-soft">
             <div className="flex items-center justify-between border-b border-slate-200 pb-4">
               <div>
                 <p className="text-sm font-semibold text-slate-500">Live Deal Score</p>
-                <h2 className="text-xl font-semibold text-ink">Marketplace scan result</h2>
+                <h2 className="text-xl font-semibold text-white">Marketplace scan result</h2>
               </div>
               <Zap className="h-5 w-5 text-royal" />
             </div>
@@ -91,9 +91,9 @@ export default function LandingPage() {
                 ["Found Price", "€12"],
                 ["Estimated Profit", "+€25"]
               ].map(([label, value]) => (
-                <div key={label} className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                <div key={label} className="rounded-lg border border-white/10 bg-slate-950 p-4">
                   <p className="text-xs font-bold uppercase tracking-wide text-slate-500">{label}</p>
-                  <p className="mt-2 text-lg font-semibold text-ink">{value}</p>
+                  <p className="mt-2 text-lg font-semibold text-white">{value}</p>
                 </div>
               ))}
             </div>
@@ -117,7 +117,7 @@ export default function LandingPage() {
         </div>
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {plans.map((plan) => (
-            <div key={plan.name} className={`rounded-lg border p-6 ${plan.featured ? "border-royal bg-blue-50 shadow-soft" : "border-slate-200 bg-white"}`}>
+            <div key={plan.name} className={`rounded-lg border p-6 ${plan.featured ? "border-blue-300/30 bg-blue-400/15 shadow-soft" : "border-white/10 bg-white/10"}`}>
               <h3 className="text-xl font-semibold">{plan.name}</h3>
               <p className="mt-4 text-4xl font-bold">{plan.price}</p>
               <ul className="mt-6 space-y-3">
@@ -133,12 +133,12 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="border-y border-slate-200 bg-slate-50">
+      <section className="border-y border-white/10 bg-slate-950">
         <div className="mx-auto max-w-4xl px-5 py-20 sm:px-8">
           <h2 className="text-4xl font-semibold tracking-tight">FAQ</h2>
           <div className="mt-8 space-y-3">
             {faqs.map((faq) => (
-              <details key={faq.question} className="group rounded-lg border border-slate-200 bg-white p-5">
+              <details key={faq.question} className="group rounded-lg border border-white/10 bg-white/10 p-5">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold">
                   {faq.question}
                   <HelpCircle className="h-5 w-5 text-royal transition group-open:rotate-45" />

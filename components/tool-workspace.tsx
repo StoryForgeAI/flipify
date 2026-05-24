@@ -18,15 +18,13 @@ type AiResponse = {
 
 const starterPrompts: Record<string, string> = {
   product_finder:
-    "Find profitable Etsy-friendly vintage fashion items under 25 EUR. Focus on Adidas, Nike, Diesel, gymwear, track jackets, and Y2K denim.",
-  video_generator:
-    "Create a short-form faceless video concept for a vintage Adidas track jacket resale listing.",
+    "Find profitable eBay-friendly vintage fashion items under 25 EUR. Focus on Adidas, Nike, Diesel, gymwear, track jackets, and Y2K denim.",
   description_optimizer:
-    "Optimize this listing: Vintage Adidas track jacket, royal blue, used but clean, bought for 12 EUR, target Etsy buyers.",
+    "Optimize this listing: Vintage Adidas track jacket, royal blue, used but clean, bought for 12 EUR, target eBay buyers.",
   pricing_intelligence:
     "Analyze resale pricing for a vintage Adidas track jacket bought for 12 EUR with expected market value around 45 EUR.",
   photo_studio:
-    "Create a studio photo direction for a messy vintage jacket product photo. Make it premium, clean, Etsy-ready."
+    "Create a studio photo direction for a messy vintage jacket product photo. Make it premium, clean, eBay-ready."
 };
 
 export function ToolWorkspace({ slug }: { slug: string }) {
@@ -115,7 +113,7 @@ export function ToolWorkspace({ slug }: { slug: string }) {
             <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight sm:text-6xl">{tool.title}</h1>
             <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-300">{tool.description}</p>
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              {["OpenAI powered", "Credit metered", "Etsy-ready"].map((badge) => (
+              {["OpenAI powered", "Credit metered", "eBay-ready"].map((badge) => (
                 <div key={badge} className="rounded-xl border border-white/10 bg-white/10 p-4 text-sm font-bold text-white backdrop-blur">
                   {badge}
                 </div>
@@ -123,13 +121,13 @@ export function ToolWorkspace({ slug }: { slug: string }) {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white p-4 text-ink shadow-2xl sm:p-6">
-            <label className="text-sm font-black text-ink">
+          <div className="rounded-2xl border border-white/10 bg-white/10 p-4 text-white shadow-2xl sm:p-6">
+            <label className="text-sm font-black text-white">
               AI brief
               <textarea
                 value={prompt}
                 onChange={(event) => setPrompt(event.target.value)}
-                className="mt-3 min-h-44 w-full resize-none rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 outline-none transition focus:border-royal focus:ring-4 focus:ring-blue-50"
+                className="mt-3 min-h-44 w-full resize-none rounded-xl border border-white/10 bg-slate-950 p-4 text-sm leading-6 text-white outline-none transition focus:border-blue-300/50 focus:ring-4 focus:ring-blue-400/10"
               />
             </label>
             <div className="mt-4 flex flex-col gap-3 sm:flex-row">
@@ -137,7 +135,7 @@ export function ToolWorkspace({ slug }: { slug: string }) {
                 {loading ? <Zap className="h-4 w-4 animate-pulse" /> : <Sparkles className="h-4 w-4" />}
                 {loading ? "Generating..." : `Run AI for ${cost} credits`}
               </button>
-              <button onClick={copyResult} disabled={!displayText} className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-5 py-4 text-sm font-black text-ink transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40">
+              <button onClick={copyResult} disabled={!displayText} className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-5 py-4 text-sm font-black text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40">
                 <Copy className="h-4 w-4" />
                 Copy
               </button>
@@ -165,14 +163,6 @@ function buildLocalPreview(action: string, prompt: string) {
     };
   }
 
-  if (action === "video_generator") {
-    return {
-      hook: "I found this vintage piece for under 15 EUR.",
-      scenes: ["Fast item reveal", "Detail closeups", "Profit overlay", "CTA to shop"],
-      caption: "Underpriced vintage find, styled for resale."
-    };
-  }
-
   if (action === "photo_studio") {
     return {
       background: "Soft light gray studio sweep",
@@ -185,7 +175,7 @@ function buildLocalPreview(action: string, prompt: string) {
     return {
       title: "Vintage Adidas Track Jacket - Royal Blue Retro Sportswear",
       description: "Clean retro Adidas track jacket with strong everyday styling potential.",
-      hashtags: ["vintageadidas", "trackjacket", "streetwear", "etsyfind"]
+      hashtags: ["vintageadidas", "trackjacket", "streetwear", "ebayfind"]
     };
   }
 
