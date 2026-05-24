@@ -47,7 +47,7 @@ export default function LandingPage() {
       <header className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
         <Logo />
         <div className="flex items-center gap-3">
-          <Link href="/login" className="hidden text-sm font-semibold text-slate-600 transition hover:text-ink sm:block">
+          <Link href="/login" className="hidden text-sm font-semibold text-slate-300 transition hover:text-white sm:block">
             Login
           </Link>
           <LandingCta compact showIcon={false}>Start Free</LandingCta>
@@ -57,7 +57,7 @@ export default function LandingPage() {
       <section className="glass-grid border-y border-white/10 bg-slate-950">
         <div className="mx-auto grid min-h-[720px] max-w-7xl items-center gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1fr_0.9fr]">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-3 py-1 text-sm font-bold text-royal">
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-300/30 bg-blue-400/15 px-3 py-1 text-sm font-bold text-blue-100">
               <Sparkles className="h-4 w-4" />
               The AI Reselling OS
             </div>
@@ -69,7 +69,7 @@ export default function LandingPage() {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <LandingCta />
-              <button className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-ink transition hover:border-slate-300 hover:shadow-sm">
+              <button className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/10 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/15">
                 <CirclePlay className="h-4 w-4 text-royal" />
                 Watch Demo
               </button>

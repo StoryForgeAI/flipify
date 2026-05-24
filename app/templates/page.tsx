@@ -363,7 +363,7 @@ function FinderStep({
         <div className="grid gap-4 lg:grid-cols-2">
           <Field label="Hashtags or themes" defaultValue="vintage, adidas, gymwear" />
           <Field label="Budget" defaultValue="€10 - €25" />
-          <label className="block text-sm font-semibold text-ink lg:col-span-2">
+          <label className="block text-sm font-semibold text-white lg:col-span-2">
             Short product brief
             <textarea defaultValue="Find lightweight branded jackets with strong retro sportswear demand and low sourcing cost." className="mt-2 min-h-36 w-full rounded-lg border border-slate-200 p-4 text-sm outline-none transition focus:border-royal focus:ring-4 focus:ring-blue-50" />
           </label>
@@ -380,7 +380,7 @@ function FinderStep({
             <Image src={aiFoundProduct.image} alt={aiFoundProduct.name} fill className="object-cover" />
           </div>
           <div className="space-y-4">
-            <h3 className="text-2xl font-semibold text-ink">{aiFoundProduct.name}</h3>
+            <h3 className="text-2xl font-semibold text-white">{aiFoundProduct.name}</h3>
             <div className="grid gap-3 sm:grid-cols-3">
               <MetricPill label="Buying Price" value={`€${aiFoundProduct.buyingPrice}`} />
               <MetricPill label="Market Value" value={`€${aiFoundProduct.marketValue}`} />
@@ -390,7 +390,7 @@ function FinderStep({
               <p className="font-bold">{aiFoundProduct.supplier} - {aiFoundProduct.safeScore}% Safe</p>
               <p className="mt-1 text-sm">Disclaimer: Transact at own risk.</p>
             </div>
-            <button className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-3 text-sm font-bold text-ink">
+            <button className="inline-flex items-center gap-2 rounded-lg border border-white/10 px-4 py-3 text-sm font-bold text-white">
               <LinkIcon className="h-4 w-4 text-royal" />
               Open purchase links
             </button>
@@ -433,9 +433,9 @@ function FinderStep({
       <StepShell icon={Sparkles} title="Pricing Intelligence" description="Tune resale pricing while Flipify calculates expected profit after estimated platform costs.">
         <div className="grid gap-4 lg:grid-cols-3">
           <MetricPill label="Estimated market value" value={`€${aiFoundProduct.marketValue}`} />
-          <label className="rounded-lg border border-slate-200 bg-white px-4 py-3">
+          <label className="rounded-lg border border-white/10 bg-white/10 px-4 py-3">
             <span className="text-xs font-medium text-slate-500">Suggested resell price</span>
-            <input type="number" value={resellPrice} onChange={(event) => setResellPrice(Number(event.target.value))} className="mt-1 w-full text-lg font-semibold text-ink outline-none" />
+            <input type="number" value={resellPrice} onChange={(event) => setResellPrice(Number(event.target.value))} className="mt-1 w-full text-lg font-semibold text-white outline-none" />
           </label>
           <MetricPill label="Potential profit margin" value={`+€${profit}`} />
         </div>
@@ -445,11 +445,11 @@ function FinderStep({
 
   return (
     <StepShell icon={Send} title="Final Touch & Export" description="Package the listing and send it to your product inventory or external marketplace.">
-      <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+      <div className="rounded-lg border border-white/10 bg-white/10 p-5">
         <p className="text-sm font-bold text-royal">Summary sheet</p>
-        <h3 className="mt-2 text-2xl font-semibold text-ink">{title}</h3>
+        <h3 className="mt-2 text-2xl font-semibold text-white">{title}</h3>
         <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
-        <p className="mt-3 text-sm font-semibold text-slate-700">{hashtags}</p>
+        <p className="mt-3 text-sm font-semibold text-slate-300">{hashtags}</p>
       </div>
       <div className="mt-5 flex flex-col gap-3 sm:flex-row">
         <button className="inline-flex items-center justify-center gap-2 rounded-lg bg-royal px-4 py-3 text-sm font-bold text-white">
@@ -487,7 +487,7 @@ function VideoStep({
               key={item.id}
               onClick={() => setSelectedProductId(item.id)}
               className={cn(
-                "overflow-hidden rounded-lg border bg-white text-left transition hover:-translate-y-1 hover:shadow-soft",
+                "overflow-hidden rounded-lg border bg-white/10 text-left transition hover:-translate-y-1 hover:shadow-soft",
                 selectedProductId === item.id ? "border-royal ring-4 ring-blue-50" : "border-slate-200"
               )}
             >
@@ -496,7 +496,7 @@ function VideoStep({
               </div>
               <div className="p-4">
                 <p className="text-xs font-bold uppercase tracking-wide text-royal">{item.brand}</p>
-                <p className="mt-1 text-sm font-bold text-ink">{item.name}</p>
+                <p className="mt-1 text-sm font-bold text-white">{item.name}</p>
               </div>
             </button>
           ))}
@@ -509,11 +509,11 @@ function VideoStep({
     return (
       <StepShell icon={FileVideo} title="Video Prompt & Influencer Model" description="Create the short-form content direction and optionally choose a digital try-on model.">
         <div className="grid gap-4 lg:grid-cols-[1fr_260px]">
-          <label className="block text-sm font-semibold text-ink">
+          <label className="block text-sm font-semibold text-white">
             Video generation prompt
             <textarea defaultValue={`Create a 12-second faceless TikTok showing ${selectedProduct.name} styled as a premium thrift find with quick cuts and price reveal.`} className="mt-2 min-h-48 w-full rounded-lg border border-slate-200 p-4 text-sm outline-none focus:border-royal focus:ring-4 focus:ring-blue-50" />
           </label>
-          <label className="block text-sm font-semibold text-ink">
+          <label className="block text-sm font-semibold text-white">
             AI Influencer Model
             <select className="mt-2 w-full rounded-lg border border-slate-200 p-3 text-sm outline-none focus:border-royal focus:ring-4 focus:ring-blue-50">
               <option>None</option>
@@ -531,16 +531,16 @@ function VideoStep({
     return (
       <StepShell icon={Volume2} title="Voiceover & Audio" description="Use AI text-to-speech or upload audio and apply a creator-style voice change.">
         <div className="grid gap-4 lg:grid-cols-2">
-          <label className="block text-sm font-semibold text-ink">
+          <label className="block text-sm font-semibold text-white">
             Text-to-speech script
             <textarea defaultValue="I found this branded vintage piece for under twenty euros and Flipify says the resale margin is looking strong." className="mt-2 min-h-40 w-full rounded-lg border border-slate-200 p-4 text-sm outline-none focus:border-royal focus:ring-4 focus:ring-blue-50" />
           </label>
           <div className="space-y-4">
-            <label className="block text-sm font-semibold text-ink">
+            <label className="block text-sm font-semibold text-white">
               Upload audio file
-              <input type="file" className="mt-2 w-full rounded-lg border border-dashed border-slate-300 bg-slate-50 p-4 text-sm" />
+              <input type="file" className="mt-2 w-full rounded-lg border border-dashed border-slate-300 bg-slate-950 p-4 text-sm" />
             </label>
-            <label className="block text-sm font-semibold text-ink">
+            <label className="block text-sm font-semibold text-white">
               Voice Changer
               <select className="mt-2 w-full rounded-lg border border-slate-200 p-3 text-sm outline-none focus:border-royal focus:ring-4 focus:ring-blue-50">
                 <option>Clean creator voice</option>
@@ -560,13 +560,13 @@ function VideoStep({
         <div className="grid gap-5 lg:grid-cols-[320px_1fr]">
           <div className="relative aspect-[9/16] overflow-hidden rounded-lg bg-ink">
             <Image src={selectedProduct.image} alt={selectedProduct.name} fill className="object-cover opacity-80" />
-            <div className="absolute inset-x-5 bottom-16 rounded-lg bg-white/95 px-4 py-3 text-center text-lg font-black text-ink">
+            <div className="absolute inset-x-5 bottom-16 rounded-lg bg-white/95 px-4 py-3 text-center text-lg font-black text-white">
               UNDERPRICED FIND
             </div>
           </div>
           <div className="space-y-3">
             {["Bold resale reveal", "Minimal lower-third", "TikTok kinetic captions"].map((style) => (
-              <button key={style} className="flex w-full items-center justify-between rounded-lg border border-slate-200 px-4 py-3 text-sm font-bold text-ink transition hover:border-royal">
+              <button key={style} className="flex w-full items-center justify-between rounded-lg border border-white/10 px-4 py-3 text-sm font-bold text-white transition hover:border-royal">
                 {style}
                 <Check className="h-4 w-4 text-royal" />
               </button>
@@ -594,7 +594,7 @@ function VideoStep({
             ].map(([Icon, label]) => {
               const SocialIcon = Icon as typeof Instagram;
               return (
-                <label key={label as string} className="flex items-center justify-between rounded-lg bg-white px-4 py-3 text-sm font-bold text-ink">
+                <label key={label as string} className="flex items-center justify-between rounded-lg bg-white px-4 py-3 text-sm font-bold text-white">
                   <span className="flex items-center gap-2">
                     <SocialIcon className="h-4 w-4 text-royal" />
                     {label as string}
@@ -628,7 +628,7 @@ function StepShell({
           <Icon className="h-5 w-5" />
         </div>
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight text-ink">{title}</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-white">{title}</h2>
           <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-600">{description}</p>
         </div>
       </div>
@@ -639,9 +639,9 @@ function StepShell({
 
 function Field({ label, defaultValue }: { label: string; defaultValue: string }) {
   return (
-    <label className="block text-sm font-semibold text-ink">
+    <label className="block text-sm font-semibold text-white">
       {label}
-      <input defaultValue={defaultValue} className="mt-2 w-full rounded-lg border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-royal focus:ring-4 focus:ring-blue-50" />
+      <input defaultValue={defaultValue} className="mt-2 w-full rounded-lg border border-white/10 px-4 py-3 text-sm outline-none transition focus:border-royal focus:ring-4 focus:ring-blue-50" />
     </label>
   );
 }
@@ -658,12 +658,12 @@ function Editable({
   textarea?: boolean;
 }) {
   return (
-    <label className="block text-sm font-semibold text-ink">
+    <label className="block text-sm font-semibold text-white">
       {label}
       {textarea ? (
         <textarea value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 min-h-36 w-full rounded-lg border border-slate-200 p-4 text-sm outline-none transition focus:border-royal focus:ring-4 focus:ring-blue-50" />
       ) : (
-        <input value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-royal focus:ring-4 focus:ring-blue-50" />
+        <input value={value} onChange={(event) => onChange(event.target.value)} className="mt-2 w-full rounded-lg border border-white/10 px-4 py-3 text-sm outline-none transition focus:border-royal focus:ring-4 focus:ring-blue-50" />
       )}
     </label>
   );
@@ -671,14 +671,14 @@ function Editable({
 
 function PhotoPanel({ label, muted }: { label: string; muted?: boolean }) {
   return (
-    <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+    <div className="rounded-lg border border-white/10 bg-white/10 p-4">
       <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-white">
         <Image src={aiFoundProduct.image} alt={label} fill className={cn("object-cover", muted ? "opacity-60 grayscale" : "saturate-125")} />
         {!muted ? (
           <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-transparent" />
         ) : null}
       </div>
-      <p className="mt-3 text-sm font-bold text-ink">{label}</p>
+      <p className="mt-3 text-sm font-bold text-white">{label}</p>
     </div>
   );
 }

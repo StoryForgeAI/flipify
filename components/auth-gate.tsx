@@ -4,7 +4,16 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useUser } from "@/components/user-provider";
 
-const protectedRoutes = ["/home", "/tools", "/templates", "/products", "/community"];
+const protectedRoutes = [
+  "/home",
+  "/tools",
+  "/templates",
+  "/products",
+  "/community",
+  "/account-settings",
+  "/billing-info",
+  "/subscriptions"
+];
 
 export function AuthGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

@@ -24,7 +24,16 @@ import { Logo } from "@/components/logo";
 import { cn } from "@/lib/utils";
 import { useUser } from "@/components/user-provider";
 
-const dashboardRoutes = ["/home", "/tools", "/templates", "/products", "/community"];
+const dashboardRoutes = [
+  "/home",
+  "/tools",
+  "/templates",
+  "/products",
+  "/community",
+  "/account-settings",
+  "/billing-info",
+  "/subscriptions"
+];
 
 const links = [
   { href: "/home", label: "Home", icon: Home },
@@ -222,8 +231,9 @@ function ProfileDropdown({
           </div>
         </div>
         <div className="mt-2 space-y-1">
-          <ProfileItem icon={Settings} label="Account settings" />
-          <ProfileItem icon={CreditCard} label="Billing infos" />
+          <ProfileLink icon={Settings} href="/account-settings" label="Account settings" />
+          <ProfileLink icon={CreditCard} href="/billing-info" label="Billing info" />
+          <ProfileLink icon={Crown} href="/subscriptions" label="Subscriptions" />
           <ProfileLink icon={LockKeyhole} href="/privacy-policy" label="Privacy Policy" />
           <ProfileLink icon={LockKeyhole} href="/terms-of-service" label="Terms of Service" />
           <button onClick={onLogout} className="mt-2 flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-bold text-red-600 transition hover:bg-red-50">

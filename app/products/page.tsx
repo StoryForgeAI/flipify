@@ -35,7 +35,7 @@ export default function ProductsPage() {
           <article key={item.id} className="overflow-hidden rounded-lg border border-white/10 bg-white/10 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
             <div className="relative aspect-[4/3] bg-slate-100">
               <Image src={item.image} alt={item.name} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
-              <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-ink shadow-sm">
+              <span className="absolute left-4 top-4 rounded-full bg-slate-950/90 px-3 py-1 text-xs font-bold text-white shadow-sm">
                 {item.status}
               </span>
             </div>

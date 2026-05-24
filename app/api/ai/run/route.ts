@@ -11,11 +11,11 @@ type RunRequest = {
 
 const actionPrompts: Record<CreditAction, string> = {
   product_finder:
-    "Return JSON with keys: summary, items. items must be an array of 3 resale opportunities with item, brand, sourceQuery, targetMarketplace, estimatedBuyPriceEUR, estimatedResalePriceEUR, estimatedProfitEUR, dealScore, riskNotes.",
+    "Return JSON with keys: summary, items. items must be an array of 3 resale opportunities with item, brand, maxBuyPriceEUR, exampleSearchLink, targetMarketplace, estimatedResalePriceEUR, estimatedProfitEUR, dealScore, riskNotes.",
   description_optimizer:
     "Return JSON with keys: title, description, bulletPoints, hashtags, ebayItemSpecifics, searchKeywords. Make it eBay-ready, accurate, and compelling.",
   pricing_intelligence:
-    "Return JSON with keys: marketValueRangeEUR, suggestedListPriceEUR, floorPriceEUR, targetProfitEUR, marginPercent, confidence, pricingNotes.",
+    "Return JSON with keys: itemName, recommendedMaxBuyPriceEUR, exampleBuySearchLink, suggestedSellPriceEUR, expectedProfitEUR, marginPercent, confidence, pricingNotes. The answer must clearly say how much to buy it for, where to look with a link, and how much to sell it for.",
   photo_studio:
     "Return JSON with keys: studioPrompt, background, lighting, editingChecklist, marketplacePhotoTips. Do not claim an image file was generated.",
   template_finder:
