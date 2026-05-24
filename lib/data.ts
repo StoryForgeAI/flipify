@@ -10,11 +10,13 @@ import {
 import { CreditAction } from "@/lib/credits";
 
 export type Tool = {
+  slug: string;
   title: string;
   description: string;
   icon: typeof Search;
   accent: string;
   action: CreditAction;
+  promise: string;
 };
 
 export type InventoryItem = {
@@ -32,39 +34,49 @@ export type InventoryItem = {
 
 export const tools: Tool[] = [
   {
+    slug: "product-finder-ai",
     title: "Product Finder AI",
     description: "Scan and discover underpriced items with high resale margins.",
     icon: Search,
     accent: "bg-blue-50 text-blue-700",
-    action: "product_finder"
+    action: "product_finder",
+    promise: "Find the flip before everyone else sees it."
   },
   {
+    slug: "viral-video-generator",
     title: "Viral Video Generator",
     description: "Turn your item photos into high-converting TikTok/Shorts faceless videos.",
     icon: Clapperboard,
     accent: "bg-fuchsia-50 text-fuchsia-700",
-    action: "video_generator"
+    action: "video_generator",
+    promise: "Produce scroll-stopping resale content."
   },
   {
+    slug: "description-tag-optimizer",
     title: "Description & Tag Optimizer",
     description: "Generate SEO-optimized titles, descriptions, and high-traffic hashtags.",
     icon: Tags,
     accent: "bg-amber-50 text-amber-700",
-    action: "description_optimizer"
+    action: "description_optimizer",
+    promise: "Turn a rough item into a searchable listing."
   },
   {
+    slug: "pricing-margin-intelligence",
     title: "Pricing & Margin Intelligence",
     description: "Calculate market value, optimal listing price, and clean profit scores.",
     icon: BadgeEuro,
     accent: "bg-emerald-50 text-emerald-700",
-    action: "pricing_intelligence"
+    action: "pricing_intelligence",
+    promise: "Know the margin before you buy."
   },
   {
+    slug: "photo-studio-background-ai",
     title: "Photo Studio Background AI",
     description: "Transform messy product photos into professional marketplace studio shots.",
     icon: Camera,
     accent: "bg-indigo-50 text-indigo-700",
-    action: "photo_studio"
+    action: "photo_studio",
+    promise: "Make thrift photos look marketplace-ready."
   }
 ];
 

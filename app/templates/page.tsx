@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import {
+  ArrowLeft,
   ArrowRight,
   Check,
   Clipboard,
@@ -89,19 +90,20 @@ function TemplateCard({
   icon: typeof ShoppingBag;
 }) {
   return (
-    <Link href={href} className="group min-h-80 rounded-xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-soft">
-      <div className="flex items-center justify-between">
-        <div className="grid h-14 w-14 place-items-center rounded-lg bg-blue-50 text-royal">
+    <Link href={href} className="group relative min-h-96 overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 p-7 text-white shadow-soft transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-2xl">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.45),transparent_36%),radial-gradient(circle_at_80%_20%,rgba(14,165,233,0.22),transparent_32%)]" />
+      <div className="relative flex items-center justify-between">
+        <div className="grid h-14 w-14 place-items-center rounded-xl bg-white text-royal">
           <Icon className="h-6 w-6" />
         </div>
-        <span className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-black text-royal">
+        <span className="rounded-full border border-blue-300/30 bg-blue-400/20 px-3 py-1 text-xs font-black text-blue-100">
           {cost} credits
         </span>
       </div>
-      <h2 className="mt-8 text-2xl font-semibold tracking-tight text-ink">{title}</h2>
-      <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
-      <span className="mt-8 inline-flex items-center gap-2 text-sm font-black text-royal">
-        Open workflow
+      <h2 className="relative mt-10 text-3xl font-semibold tracking-tight">{title}</h2>
+      <p className="relative mt-4 text-sm leading-6 text-slate-300">{description}</p>
+      <span className="relative mt-10 inline-flex items-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-black text-royal transition group-hover:bg-blue-50">
+        Open full-screen workflow
         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
       </span>
     </Link>
@@ -202,13 +204,22 @@ export function TemplateWorkflow({
   };
 
   return (
-    <main>
-      <PageHeader
-        eyebrow="Templates"
-        title="Workflows & multi-step templates"
-        description="Run complete resale workflows with focused steps, live states, and inventory handoff."
-      />
-      <section className="px-5 py-8 sm:px-8">
+    <main className={cn(locked && "min-h-screen bg-slate-950")}>
+      {locked ? (
+        <div className="px-5 pt-5 sm:px-8">
+          <Link href="/templates" className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-4 py-2 text-sm font-bold text-white backdrop-blur transition hover:bg-white/15">
+            <ArrowLeft className="h-4 w-4" />
+            Back to templates
+          </Link>
+        </div>
+      ) : (
+        <PageHeader
+          eyebrow="Templates"
+          title="Workflows & multi-step templates"
+          description="Run complete resale workflows with focused steps, live states, and inventory handoff."
+        />
+      )}
+      <section className={cn("px-5 py-8 sm:px-8", locked && "text-ink")}>
         <div className="mb-5 flex flex-col gap-3 rounded-xl border border-blue-100 bg-blue-50 p-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-black text-royal">{credits} credits available</p>

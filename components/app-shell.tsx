@@ -39,7 +39,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { email, credits, signOut } = useUser();
   const [menuOpen, setMenuOpen] = useState(false);
-  const showSidebar = dashboardRoutes.some((route) => pathname.startsWith(route));
+  const isFocusedRoute =
+    /^\/tools\/[^/]+/.test(pathname) ||
+    pathname.startsWith("/templates/template1") ||
+    pathname.startsWith("/templates/template2");
+  const showSidebar = !isFocusedRoute && dashboardRoutes.some((route) => pathname.startsWith(route));
 
   useEffect(() => {
     setMenuOpen(false);
